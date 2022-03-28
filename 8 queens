@@ -1,0 +1,113 @@
+# 92
+
+board = []
+# Queenc = int(input("How Many Queens do you want? "))
+# Works = [5, 2, 4, 7, 3, 8, 6, 1]
+Queenc = 8
+available_queens = [1, 2, 3, 4, 5, 6, 7, 8]
+row_attempts = [[], [], [], [], [], [], [], []]
+solution_count = 0
+
+def Check(board):
+
+    def columnChecker(board):
+        if len(board) == len(set(board)):
+            return True
+        else:
+            return False
+
+    def dcheck(board):
+        for i in range(len(board)):
+            current = board[i]
+            for j in range(i + 1, len(board)):
+                checkers = board[j]
+                if current == checkers + (j - i):
+                    return False
+                if current == checkers - (j - i):
+                    return False
+        return True
+
+    def grandChecker(board):
+        if columnChecker(board):
+            if dcheck(board):
+                return True
+        return False
+
+    if grandChecker(board):
+        return True
+
+    else:
+        return False
+
+
+def QueenPlacer():
+
+    for i in range(len(available_queens)):
+
+        if available_queens[i] in row_attempts[len(board)]:
+            continue
+
+        row_attempts[len(board)].append(available_queens[i])
+
+        board.append(available_queens[i])
+
+        # Check
+        Valid = Check(board)
+
+        # If Work -> Return True (break etc)
+        if Valid:
+            available_queens.pop(i)
+            return True
+
+        # If no Work -> Try again
+        elif not Valid:
+            board.pop()
+
+    return False
+
+
+def BackTrack():
+    backtrack = True
+
+    while backtrack and len(board) > 0:
+        if len(board) < Queenc:
+            row_attempts[len(board)] = []
+
+        Swappidge = board.pop()
+        available_queens.append(Swappidge)
+
+        for q in available_queens:
+            if q not in row_attempts[len(board)]:
+                backtrack = False
+
+    if backtrack:
+        print('Complete')
+        print('Found ' + str(solution_count) + 'Solutions')
+        exit()
+
+
+while True:
+
+    # Put queen in place
+    placed_queens = QueenPlacer()
+
+    # If it workey do thing again
+    if placed_queens and (len(board) != Queenc):
+        continue
+
+    # If u get correct solution save to json
+    elif placed_queens and (len(board) == Queenc):
+        solution_count += 1
+        print(board)
+        BackTrack()
+        # add json thing later
+
+    # If brokey or just had correct solution increment last correct queen placed
+    elif not placed_queens:
+        BackTrack()
+
+    # print()
+    # print("Queene:      " + str(board))
+    # print("Row attempts " + str(row_attempts))
+    # print("AvailableQueens " + str(available_queens))
+
