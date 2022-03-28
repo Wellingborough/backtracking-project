@@ -1,5 +1,5 @@
 
-const SCREEN_WIDTH = 600;
+const SCREEN_WIDTH = 400;
 const SCREEN_HEIGHT = 600;
 
 const CHESS_WIDTH = 400;
@@ -49,15 +49,35 @@ var queens;
 
 var previousTime;
 var dt;
+var movePieceInterval;
 
 var moves = []
 
+
+var canvas;
+var play;
+var pause;
+
 function setup()
 {
-    var canvas = createCanvas(SCREEN_WIDTH, SCREEN_HEIGHT);
+    canvas = createCanvas(SCREEN_WIDTH, SCREEN_HEIGHT);
     canvas.center();
+    const canvasPosition = canvas.position()
+    canvas.position(canvasPosition.x, canvasPosition.y - 250, "fixed")
 
-    var movePieceInterval = setInterval(movePiece, 1000)
+    play = createButton("Play");
+    play.mousePressed(playLoop);
+    play.center("horizontal");
+    play.position(play.position().x - 50, play.position().y, "fixed");
+    play.addClass("button");
+
+    pause = createButton("Pause");
+    pause.mousePressed(pauseLoop);
+    pause.center("horizontal");
+    pause.position(pause.position().x + 50, pause.position().y, "fixed");
+    pause.addClass("button");
+
+    movePieceInterval = setInterval(movePiece, 1000);
 
     queens = [
         {index: 0, black: loadImage("./resources/black_queen.png"), white: loadImage("./resources/white_queen.png"), x: 0, y: 0, active: false},
@@ -78,6 +98,18 @@ function setup()
     moves.push({index: 0, dx: 0, dy: 0, toggle: true})
 
     dt = 0
+}
+
+function playLoop()
+{
+    loop()
+    movePieceInterval = setInterval(movePiece, 1000)
+}
+
+function pauseLoop()
+{
+    noLoop()
+    clearInterval(movePieceInterval);
 }
 
 function draw()
