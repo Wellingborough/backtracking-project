@@ -20,14 +20,14 @@ function drawBoard()
         {
             if (((i * n) + j + offset) % 2 == 0)
             {
-                fill(255, 204, 153)
-                stroke(255, 204, 153)
+                fill(235, 236, 208)
+                stroke(235, 236, 208)
                 rect(j * squareWidth, i * squareHeight, squareWidth, squareHeight)
             }
             else
             {
-                fill(54, 34, 4)
-                stroke(54, 34, 4)
+                fill(119, 149, 86)
+                stroke(119, 149, 86)
                 rect(j * squareWidth, i * squareHeight, squareWidth, squareHeight)
             }
         }
