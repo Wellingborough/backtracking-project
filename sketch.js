@@ -80,14 +80,14 @@ function setup()
     movePieceInterval = setInterval(movePiece, 1000);
 
     queens = [
-        {index: 0, black: loadImage("./resources/black_queen.png"), white: loadImage("./resources/white_queen.png"), x: 0, y: 0, active: false},
-        {index: 1, black: loadImage("./resources/black_queen.png"), white: loadImage("./resources/white_queen.png"), x: 1, y: 0, active: false},
-        {index: 2, black: loadImage("./resources/black_queen.png"), white: loadImage("./resources/white_queen.png"), x: 2, y: 0, active: false},
-        {index: 3, black: loadImage("./resources/black_queen.png"), white: loadImage("./resources/white_queen.png"), x: 3, y: 0, active: false},
-        {index: 4, black: loadImage("./resources/black_queen.png"), white: loadImage("./resources/white_queen.png"), x: 4, y: 0, active: false},
-        {index: 5, black: loadImage("./resources/black_queen.png"), white: loadImage("./resources/white_queen.png"), x: 5, y: 0, active: false},
-        {index: 6, black: loadImage("./resources/black_queen.png"), white: loadImage("./resources/white_queen.png"), x: 6, y: 0, active: false},
-        {index: 7, black: loadImage("./resources/black_queen.png"), white: loadImage("./resources/white_queen.png"), x: 7, y: 0, active: false}
+        {index: 0, black: loadImage("./resources/black_queen.png"), white: loadImage("./resources/black_queen.png"), x: 0, y: 0, active: false},
+        {index: 1, black: loadImage("./resources/black_queen.png"), white: loadImage("./resources/black_queen.png"), x: 1, y: 0, active: false},
+        {index: 2, black: loadImage("./resources/black_queen.png"), white: loadImage("./resources/black_queen.png"), x: 2, y: 0, active: false},
+        {index: 3, black: loadImage("./resources/black_queen.png"), white: loadImage("./resources/black_queen.png"), x: 3, y: 0, active: false},
+        {index: 4, black: loadImage("./resources/black_queen.png"), white: loadImage("./resources/black_queen.png"), x: 4, y: 0, active: false},
+        {index: 5, black: loadImage("./resources/black_queen.png"), white: loadImage("./resources/black_queen.png"), x: 5, y: 0, active: false},
+        {index: 6, black: loadImage("./resources/black_queen.png"), white: loadImage("./resources/black_queen.png"), x: 6, y: 0, active: false},
+        {index: 7, black: loadImage("./resources/black_queen.png"), white: loadImage("./resources/black_queen.png"), x: 7, y: 0, active: false}
     ]
 
     const d = new Date();
