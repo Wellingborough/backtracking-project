@@ -20,14 +20,14 @@ function drawBoard()
         {
             if (((i * n) + j + offset) % 2 == 0)
             {
-                fill(235, 236, 208)
-                stroke(235, 236, 208)
+                fill(255, 204, 153)
+                stroke(255, 204, 153)
                 rect(j * squareWidth, i * squareHeight, squareWidth, squareHeight)
             }
             else
             {
-                fill(119, 149, 86)
-                stroke(119, 149, 86)
+                fill(54, 34, 4)
+                stroke(54, 34, 4)
                 rect(j * squareWidth, i * squareHeight, squareWidth, squareHeight)
             }
         }
@@ -80,24 +80,22 @@ function setup()
     movePieceInterval = setInterval(movePiece, 1000);
 
     queens = [
-        {index: 0, black: loadImage("./resources/black_queen.png"), white: loadImage("./resources/black_queen.png"), x: 0, y: 0, active: false},
-        {index: 1, black: loadImage("./resources/black_queen.png"), white: loadImage("./resources/black_queen.png"), x: 1, y: 0, active: false},
-        {index: 2, black: loadImage("./resources/black_queen.png"), white: loadImage("./resources/black_queen.png"), x: 2, y: 0, active: false},
-        {index: 3, black: loadImage("./resources/black_queen.png"), white: loadImage("./resources/black_queen.png"), x: 3, y: 0, active: false},
-        {index: 4, black: loadImage("./resources/black_queen.png"), white: loadImage("./resources/black_queen.png"), x: 4, y: 0, active: false},
-        {index: 5, black: loadImage("./resources/black_queen.png"), white: loadImage("./resources/black_queen.png"), x: 5, y: 0, active: false},
-        {index: 6, black: loadImage("./resources/black_queen.png"), white: loadImage("./resources/black_queen.png"), x: 6, y: 0, active: false},
-        {index: 7, black: loadImage("./resources/black_queen.png"), white: loadImage("./resources/black_queen.png"), x: 7, y: 0, active: false}
+        {index: 0, black: loadImage("./resources/black_queen.png"), white: loadImage("./resources/white_queen.png"), x: 0, y: 0, active: false},
+        {index: 1, black: loadImage("./resources/black_queen.png"), white: loadImage("./resources/white_queen.png"), x: 0, y: 1, active: false},
+        {index: 2, black: loadImage("./resources/black_queen.png"), white: loadImage("./resources/white_queen.png"), x: 0, y: 2, active: false},
+        {index: 3, black: loadImage("./resources/black_queen.png"), white: loadImage("./resources/white_queen.png"), x: 0, y: 3, active: false},
+        {index: 4, black: loadImage("./resources/black_queen.png"), white: loadImage("./resources/white_queen.png"), x: 0, y: 4, active: false},
+        {index: 5, black: loadImage("./resources/black_queen.png"), white: loadImage("./resources/white_queen.png"), x: 0, y: 5, active: false},
+        {index: 6, black: loadImage("./resources/black_queen.png"), white: loadImage("./resources/white_queen.png"), x: 0, y: 6, active: false},
+        {index: 7, black: loadImage("./resources/black_queen.png"), white: loadImage("./resources/white_queen.png"), x: 0, y: 7, active: false}
     ]
 
     const d = new Date();
     previousTime = d.getTime();
 
-    moves.push({index: 0, dx: 0, dy: 0, toggle: true})
-    moves.push({index: 0, dx: 5, dy: 3, toggle: false})
-    moves.push({index: 0, dx: 0, dy: 0, toggle: true})
-
     dt = 0
+
+    calculateMoves()
 }
 
 function playLoop()
@@ -163,9 +161,7 @@ function draw()
             image(queen.black, ((n - queen.index) * squareWidth - squareWidth), squareHeight * 9, squareWidth, squareHeight);
         } 
     }
-    console.log(number)
 }
-
 
 function movePiece()
 {
@@ -173,17 +169,7 @@ function movePiece()
     {
         var move = moves[0]
 
-        if (move.toggle)
-        {
-            if (queens[move.index].active)
-            {
-                queens[move.index].active = false;
-            }
-            else
-            {
-                queens[move.index].active = true;
-            }
-        }
+        queens[move.index].active = move.active        
 
         if (move.dx != 0)
         {
@@ -200,6 +186,53 @@ function movePiece()
         else
         {
             moves.shift()
+        }
+    }
+}
+
+var virtualPositions = [{x: 0, y: 0}, {x: 0, y: 1}, {x: 0, y: 2}, {x: 0, y: 3}, {x: 0, y: 4}, {x: 0, y: 5}, {x: 0, y: 6}, {x: 0, y: 7}]
+
+function createMove(index, x, state)
+{
+    var dx = x - virtualPositions[index].x
+    virtualPositions[index].x += dx
+
+    if (dx != 0)
+    {
+        moves.push({index: index, dx: dx, dy: 0, active: state})
+    }
+}
+
+function calculateMoves()
+{
+    var boardHistory = run()
+
+    for (tmpBoard of boardHistory)
+    {
+        var paddingNumber = 8 - tmpBoard.length
+        for (var i = 0; i < paddingNumber; i++)
+        {
+            tmpBoard.push(-1)
+        }
+    }
+    
+    moves.push({index: 0, dx: 0, dy: 0, active: true})
+
+    for (tmpBoard of boardHistory)
+    {
+        console.log(tmpBoard)
+        for (var i = 0; i < tmpBoard.length; i++)
+        {   
+            const item = tmpBoard[i]
+
+            if (item == -1)
+            {
+                createMove(i, 0, false)
+            }
+            else
+            {
+                createMove(i, item - 1, true)
+            }
         }
     }
 }
