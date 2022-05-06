@@ -1,10 +1,12 @@
 var board = [];
-var n = 8;
+var boardNumber = 8;
+
+var board_history = []
 
 var avaliableQueens = []
 var rowAttempts = []
 
-for (var i = 1; i <= n; i++)
+for (var i = 1; i <= boardNumber; i++)
 {
     avaliableQueens.push(i)
     rowAttempts.push([])
@@ -60,6 +62,8 @@ function queenPlacer()
         rowAttempts[board.length].push(queen)
         board.push(queen)
 
+        board_history.push([...board])
+
         var valid = check(board)
 
         if (valid)
@@ -81,12 +85,13 @@ function backtrack()
 
     while (isBacktrack && board.length > 0)
     {
-        if (board.length < n)
+        if (board.length < boardNumber)
         {
             rowAttempts[board.length] = []
         }
 
         avaliableQueens.push(board.pop())
+        board_history.push([...board])
 
         for (queen of avaliableQueens)
         {
@@ -107,15 +112,15 @@ function backtrack()
 }
 
 
-function main()
+function run()
 {
     var running = true;
     while (running)
     {
         var hasPlaced = queenPlacer();
 
-        if (hasPlaced && (board.length != n)) {continue;}
-        else if (hasPlaced && (board.length == n))
+        if (hasPlaced && (board.length != boardNumber)) {continue;}
+        else if (hasPlaced && (board.length == boardNumber))
         {
             solutionCount++;
             console.log(board)
@@ -126,6 +131,8 @@ function main()
             running = backtrack()
         }
     }
+    console.log(board_history)
+    return board_history
 }
 
-main()
+run()
