@@ -94,7 +94,7 @@ function setup()
         {index: 7, black: loadImage("./resources/black_queen.png"), white: loadImage("./resources/white_queen.png"), x: 0, y: 7, active: false}
     ]
     
-    textSize(32)
+    textSize(24)
 
     calculateMoves()
 }
