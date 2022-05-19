@@ -58,6 +58,8 @@ var canvas;
 var play;
 var pause;
 
+const myInterval = 100
+
 function setup()
 {
     canvas = createCanvas(SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -77,7 +79,7 @@ function setup()
     pause.position(pause.position().x + 50, pause.position().y, "fixed");
     pause.addClass("button");
 
-    movePieceInterval = setInterval(movePiece, 1000);
+    movePieceInterval = setInterval(movePiece, myInterval);
 
     queens = [
         {index: 0, black: loadImage("./resources/black_queen.png"), white: loadImage("./resources/white_queen.png"), x: 0, y: 0, active: false},
@@ -90,18 +92,13 @@ function setup()
         {index: 7, black: loadImage("./resources/black_queen.png"), white: loadImage("./resources/white_queen.png"), x: 0, y: 7, active: false}
     ]
 
-    //const d = new Date();
-    //previousTime = d.getTime();
-
-    //dt = 0
-
     calculateMoves()
 }
 
 function playLoop()
 {
-    noLoop()
-    movePieceInterval = setInterval(movePiece, 10)
+    loop()
+    movePieceInterval = setInterval(movePiece, myInterval)
 }
 
 function pauseLoop()
@@ -113,11 +110,6 @@ function pauseLoop()
 function draw()
 {
     clear()
-    const d = new Date();
-    const currentTime = d.getTime();
-
-    dt = currentTime - previousTime;
-    previousTime = currentTime;
 
     drawBoard()
     var number = 0;
@@ -206,7 +198,9 @@ function createMove(index, x, state)
 
 function calculateMoves()
 {
-    var boardHistory = run()
+    var package = run()
+    var boardHistory = package[0]
+    var solutionNumbers = package[1]
 
     for (tmpBoard of boardHistory)
     {
@@ -219,8 +213,13 @@ function calculateMoves()
     
     moves.push({index: 0, dx: 0, dy: 0, active: true})
 
+    var boardIndex = 0
+    
     for (tmpBoard of boardHistory)
     {
+        if (boardIndex in solutionNumbers) {
+            console.log("Would pause on this one: ", tmpBoard)
+        }
         //console.log(tmpBoard)
         //for (var i = 0; i < tmpBoard.length; i++)
         for (var i = tmpBoard.length-1; i >= 0; i--)
@@ -236,5 +235,6 @@ function calculateMoves()
                 createMove(i, item - 1, true)
             }
         }
+        boardIndex++
     }
 }
