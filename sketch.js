@@ -217,7 +217,7 @@ function calculateMoves()
     
     for (tmpBoard of boardHistory)
     {
-        if (boardIndex in solutionNumbers) {
+        if (solutionNumbers.includes(boardIndex)) {
             console.log("Would pause on this one: ", tmpBoard)
         }
         //console.log(tmpBoard)
