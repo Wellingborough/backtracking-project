@@ -82,12 +82,12 @@ function queenPlacer()
         if (valid)
         {
             availableQueens.splice(i, 1)
-            console.log("queenPlacer, valid: ", board)
+            //console.log("queenPlacer, valid: ", board)
             return true;
         }
         else
         {
-            console.log("queenPlacer, invalid: ", board)
+            //console.log("queenPlacer, invalid: ", board)
             board.pop()
         }
     }
@@ -98,7 +98,7 @@ function backtrack()
 {
     var isBacktrack = true;
 
-    console.log("Backtracking")
+    //console.log("Backtracking")
     
     while (isBacktrack && board.length > 0)
     {
@@ -148,7 +148,7 @@ function run()
             running = backtrack()
         }
     }
-    console.log(board_history)
+    //console.log(board_history)
     return board_history
 }
 
