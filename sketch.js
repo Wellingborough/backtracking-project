@@ -211,7 +211,7 @@ function createMove(index, x, state)
     }
     else {
         if ( state ) {
-            moves.push({index: index, 0, 0, true})
+            moves.push({index: index, dx: 0, dy: 0, active: true})
         }
     }
 }
@@ -221,7 +221,6 @@ function calculateMoves()
     var package = run()
     var boardHistory = package[0]
     var solutionNumbers = package[1]
-    console.log("Solution Numbers = ", solutionNumbers)
 
     for (tmpBoard of boardHistory)
     {
@@ -238,8 +237,6 @@ function calculateMoves()
     
     for (tmpBoard of boardHistory)
     {
-        //console.log(tmpBoard)
-        //for (var i = 0; i < tmpBoard.length; i++)
         for (var i = tmpBoard.length-1; i >= 0; i--)
         {   
             const item = tmpBoard[i]
@@ -254,7 +251,6 @@ function calculateMoves()
             }
         }
         if (solutionNumbers.includes(boardIndex)) {
-            console.log("Would pause on this one: ", tmpBoard)
             createMove(-99, -99, false)
         }
         boardIndex++
