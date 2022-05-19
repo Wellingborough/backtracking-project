@@ -221,7 +221,8 @@ function calculateMoves()
     for (tmpBoard of boardHistory)
     {
         console.log(tmpBoard)
-        for (var i = 0; i < tmpBoard.length; i++)
+        //for (var i = 0; i < tmpBoard.length; i++)
+        for (var i = tmpBoard.length-1; i >= 0; i--)
         {   
             const item = tmpBoard[i]
 
