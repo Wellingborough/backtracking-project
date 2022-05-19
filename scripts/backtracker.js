@@ -108,7 +108,7 @@ function backtrack()
         }
 
         availableQueens.push(board.pop())
-        board_history.push([...board])
+        //board_history.push([...board])
 
         for (queen of availableQueens)
         {
