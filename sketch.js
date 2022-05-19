@@ -115,6 +115,12 @@ function draw()
 {
     clear()
 
+    if (solutionNumber == 1) {
+        text('Found ' + solutionNumber.toString() + ' solution', 10, 60)
+    } else {
+        text('Found ' + solutionNumber.toString() + ' solutions', 10, 60)
+    }
+    
     drawBoard()
     var number = 0;
     for (queen of queens)
@@ -169,7 +175,6 @@ function movePiece()
             moves.shift()
             console.log("Pausing")
             solutionNumber += 1
-            text('Found solution ' + solutionNumber.toString(), 10, 60)
             clearInterval(movePieceInterval)    
             return
         }
