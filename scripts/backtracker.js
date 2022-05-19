@@ -6,6 +6,8 @@ var board_history = []
 var availableQueens = []
 var rowAttempts = []
 
+var solutionNumbers[]
+
 //
 // Create an array of Queens
 // This list is used later to 'pick' from
@@ -140,6 +142,7 @@ function run()
         else if (hasPlaced && (board.length == boardNumber))
         {
             solutionCount++;
+            solutionNumbers.append(board_history.length)
             // console.log(board)
             running = backtrack()
         }
@@ -149,7 +152,7 @@ function run()
         }
     }
     //console.log(board_history)
-    return board_history
+    return [board_history, solutionNumbers]
 }
 
 run()
