@@ -193,7 +193,7 @@ function createMove(index, x, state)
     //
     // Dummy move indicating we should pause on a solution
     //
-    if ( (index == -99) and (x == -99) ){
+    if ( (index == -99) && (x == -99) ){
         clearInterval(movePieceInterval)
         return
     }
