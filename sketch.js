@@ -190,6 +190,14 @@ function createMove(index, x, state)
     var dx = x - virtualPositions[index].x
     virtualPositions[index].x += dx
 
+    //
+    // Dummy move indicating we should pause on a solution
+    //
+    if ( (index == -99) and (x == -99) ){
+        clearInterval(movePieceInterval)
+        return
+    }
+    
     if (dx != 0)
     {
         moves.push({index: index, dx: dx, dy: 0, active: state})
@@ -218,10 +226,6 @@ function calculateMoves()
     
     for (tmpBoard of boardHistory)
     {
-        if (solutionNumbers.includes(boardIndex)) {
-            console.log("Would pause on this one: ", tmpBoard)
-            clearInterval(movePieceInterval)
-        }
         //console.log(tmpBoard)
         //for (var i = 0; i < tmpBoard.length; i++)
         for (var i = tmpBoard.length-1; i >= 0; i--)
@@ -236,6 +240,10 @@ function calculateMoves()
             {
                 createMove(i, item - 1, true)
             }
+        }
+        if (solutionNumbers.includes(boardIndex)) {
+            console.log("Would pause on this one: ", tmpBoard)
+            createMove(-99, -99, false)
         }
         boardIndex++
     }
