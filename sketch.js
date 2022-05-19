@@ -104,7 +104,7 @@ function playLoop()
 function pauseLoop()
 {
     noLoop()
-    clearInterval(movePieceInterval);
+    clearInterval(movePieceInterval)
 }
 
 function draw()
@@ -220,6 +220,7 @@ function calculateMoves()
     {
         if (solutionNumbers.includes(boardIndex)) {
             console.log("Would pause on this one: ", tmpBoard)
+            clearInterval(movePieceInterval)
         }
         //console.log(tmpBoard)
         //for (var i = 0; i < tmpBoard.length; i++)
