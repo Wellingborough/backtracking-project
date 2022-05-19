@@ -6,6 +6,11 @@ var board_history = []
 var avaliableQueens = []
 var rowAttempts = []
 
+//
+// Create an array of Queens
+// This list is used later to 'pick' from
+// as we place queens on the board.
+//
 for (var i = 1; i <= boardNumber; i++)
 {
     avaliableQueens.push(i)
@@ -14,6 +19,12 @@ for (var i = 1; i <= boardNumber; i++)
 
 var solutionCount = 0;
 
+//
+// Check a partial or full solution - the check is split
+// into two parts; the first part checks that no two queens
+// are in the same column.  The second part checks for any
+// diagonal attacks.
+//
 function check(checkBoard)
 {
     function columnChecker(board)
@@ -69,10 +80,12 @@ function queenPlacer()
         if (valid)
         {
             avaliableQueens.splice(i, 1)
+            console.log("queenPlacer, valid: ", board)
             return true;
         }
         else
         {
+            console.log("queenPlacer, invalid: ", board)
             board.pop()
         }
     }
@@ -83,6 +96,8 @@ function backtrack()
 {
     var isBacktrack = true;
 
+    console.log("Backtracking")
+    
     while (isBacktrack && board.length > 0)
     {
         if (board.length < boardNumber)
@@ -123,7 +138,7 @@ function run()
         else if (hasPlaced && (board.length == boardNumber))
         {
             solutionCount++;
-            console.log(board)
+            // console.log(board)
             running = backtrack()
         }
         else if (!hasPlaced)
