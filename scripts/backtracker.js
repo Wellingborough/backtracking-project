@@ -6,7 +6,7 @@ var board_history = []
 var availableQueens = []
 var rowAttempts = []
 
-var solutionNumbers[]
+var solutionNumbers = []
 
 //
 // Create an array of Queens
