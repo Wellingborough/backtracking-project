@@ -187,9 +187,6 @@ var virtualPositions = [{x: 0, y: 0}, {x: 0, y: 1}, {x: 0, y: 2}, {x: 0, y: 3}, 
 
 function createMove(index, x, state)
 {
-    var dx = x - virtualPositions[index].x
-    virtualPositions[index].x += dx
-
     //
     // Dummy move indicating we should pause on a solution
     //
@@ -198,6 +195,10 @@ function createMove(index, x, state)
         clearInterval(movePieceInterval)
         return
     }
+
+    var dx = x - virtualPositions[index].x
+    virtualPositions[index].x += dx
+
     
     if (dx != 0)
     {
