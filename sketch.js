@@ -116,8 +116,10 @@ function draw()
     clear()
 
     if (solutionNumber == 1) {
+        fill(255, 204, 153)
         text('Found ' + solutionNumber.toString() + ' solution', 10, 60)
     } else {
+        fill(255, 204, 153)
         text('Found ' + solutionNumber.toString() + ' solutions', 10, 60)
     }
     
