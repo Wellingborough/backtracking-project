@@ -117,10 +117,10 @@ function draw()
 
     if (solutionNumber == 1) {
         fill(255, 204, 153)
-        text('Found ' + solutionNumber.toString() + ' solution', 10, 60)
+        text('Found ' + solutionNumber.toString() + ' solution', 10, 500)
     } else {
         fill(255, 204, 153)
-        text('Found ' + solutionNumber.toString() + ' solutions', 10, 60)
+        text('Found ' + solutionNumber.toString() + ' solutions', 10, 500)
     }
     
     drawBoard()
