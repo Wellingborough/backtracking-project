@@ -90,17 +90,17 @@ function setup()
         {index: 7, black: loadImage("./resources/black_queen.png"), white: loadImage("./resources/white_queen.png"), x: 0, y: 7, active: false}
     ]
 
-    const d = new Date();
-    previousTime = d.getTime();
+    //const d = new Date();
+    //previousTime = d.getTime();
 
-    dt = 0
+    //dt = 0
 
     calculateMoves()
 }
 
 function playLoop()
 {
-    loop()
+    noLoop()
     movePieceInterval = setInterval(movePiece, 10)
 }
 
@@ -188,6 +188,7 @@ function movePiece()
             moves.shift()
         }
     }
+    draw()
 }
 
 var virtualPositions = [{x: 0, y: 0}, {x: 0, y: 1}, {x: 0, y: 2}, {x: 0, y: 3}, {x: 0, y: 4}, {x: 0, y: 5}, {x: 0, y: 6}, {x: 0, y: 7}]
