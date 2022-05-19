@@ -154,5 +154,3 @@ function run()
     //console.log(board_history)
     return [board_history, solutionNumbers]
 }
-
-run()
