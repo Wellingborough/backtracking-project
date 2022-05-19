@@ -1,14 +1,16 @@
 
-const SCREEN_WIDTH = 400;
-const SCREEN_HEIGHT = 600;
+const SCREEN_WIDTH = 400
+const SCREEN_HEIGHT = 600
 
-const CHESS_WIDTH = 400;
-const CHESS_HEIGHT = 400;
+const CHESS_WIDTH = 400
+const CHESS_HEIGHT = 400
 
-const n = 8;
+const n = 8
 
-const squareWidth = CHESS_WIDTH / n;
-const squareHeight = CHESS_HEIGHT / n;
+const squareWidth = CHESS_WIDTH / n
+const squareHeight = CHESS_HEIGHT / n
+
+var solutionNumber = 0
 
 function drawBoard()
 {
@@ -91,6 +93,8 @@ function setup()
         {index: 6, black: loadImage("./resources/black_queen.png"), white: loadImage("./resources/white_queen.png"), x: 0, y: 6, active: false},
         {index: 7, black: loadImage("./resources/black_queen.png"), white: loadImage("./resources/white_queen.png"), x: 0, y: 7, active: false}
     ]
+    
+    textSize(32)
 
     calculateMoves()
 }
@@ -164,6 +168,9 @@ function movePiece()
         if (move.index == -99) {
             moves.shift()
             console.log("Pausing")
+            solutionNumber += 1
+            fill(0, 102, 153)
+            text('Found solution ' + solutionNUmber.toString(), 10, 60)
             clearInterval(movePieceInterval)    
             return
         }
