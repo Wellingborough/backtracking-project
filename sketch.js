@@ -169,8 +169,7 @@ function movePiece()
             moves.shift()
             console.log("Pausing")
             solutionNumber += 1
-            fill(0, 102, 153)
-            text('Found solution ' + solutionNUmber.toString(), 10, 60)
+            text('Found solution ' + solutionNumber.toString(), 10, 60)
             clearInterval(movePieceInterval)    
             return
         }
