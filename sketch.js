@@ -175,12 +175,16 @@ function movePiece()
             const dx = move.dx;
             queens[move.index].x += Math.round(dx / Math.abs(dx))
             move.dx -= Math.round(dx / Math.abs(dx))
+            // Temp - force active to true
+            queens[move.index].active = true        
         }
         else if (move.dy != 0)
         {
             const dy = move.dy;
             queens[move.index].y += Math.round(dy / Math.abs(dy))
             move.dy -= Math.round(dy / Math.abs(dy))
+            // Temp - force active to true
+            queens[move.index].active = true        
         }
         else
         {
