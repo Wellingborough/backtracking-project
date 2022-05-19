@@ -194,6 +194,8 @@ var virtualPositions = [{x: 0, y: 0}, {x: 0, y: 1}, {x: 0, y: 2}, {x: 0, y: 3}, 
 
 function createMove(index, x, state)
 {
+    console.log("createMove: virtualPositions ", virtualPositions)
+    console.log("createMove: index, x, state ", index, x, state)
     var dx = x - virtualPositions[index].x
     virtualPositions[index].x += dx
 
@@ -220,7 +222,7 @@ function calculateMoves()
 
     for (tmpBoard of boardHistory)
     {
-        console.log(tmpBoard)
+        //console.log(tmpBoard)
         //for (var i = 0; i < tmpBoard.length; i++)
         for (var i = tmpBoard.length-1; i >= 0; i--)
         {   
