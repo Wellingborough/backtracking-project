@@ -115,12 +115,13 @@ function draw()
 {
     clear()
 
+    // Magic number warning...
     if (solutionNumber == 1) {
         fill(255, 204, 153)
-        text('Found ' + solutionNumber.toString() + ' solution', 10, 500)
+        text('Found ' + solutionNumber.toString() + ' solution', 10, 450)
     } else {
         fill(255, 204, 153)
-        text('Found ' + solutionNumber.toString() + ' solutions', 10, 500)
+        text('Found ' + solutionNumber.toString() + ' solutions', 10, 450)
     }
     
     drawBoard()
