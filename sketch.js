@@ -117,11 +117,11 @@ function draw()
 
     // Magic number warning...
     if (solutionNumber == 1) {
-        fill(255, 204, 153)
-        text('Found ' + solutionNumber.toString() + ' solution', 10, 450)
+        fill(54, 34, 4)
+        text('Found ' + solutionNumber.toString() + ' solution', 0, 440)
     } else {
-        fill(255, 204, 153)
-        text('Found ' + solutionNumber.toString() + ' solutions', 10, 450)
+        fill(54, 34, 4)
+        text('Found ' + solutionNumber.toString() + ' solutions', 0, 440)
     }
     
     drawBoard()
