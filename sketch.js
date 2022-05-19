@@ -101,7 +101,7 @@ function setup()
 function playLoop()
 {
     loop()
-    movePieceInterval = setInterval(movePiece, 1000)
+    movePieceInterval = setInterval(movePiece, 10)
 }
 
 function pauseLoop()
