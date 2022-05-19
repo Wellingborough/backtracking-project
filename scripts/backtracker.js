@@ -64,7 +64,7 @@ function check(checkBoard)
 
 function queenPlacer()
 {
-    console.log("queenPlacer, availableQueens: ", availableQueens)
+    console.log("queenPlacer, availableQueens: ", avaliableQueens)
     for (var i = 0; i < avaliableQueens.length; i++)
     {
         const queen = avaliableQueens[i]
