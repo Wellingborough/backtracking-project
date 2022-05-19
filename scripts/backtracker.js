@@ -3,7 +3,7 @@ var boardNumber = 8;
 
 var board_history = []
 
-var avaliableQueens = []
+var availableQueens = []
 var rowAttempts = []
 
 //
@@ -13,7 +13,7 @@ var rowAttempts = []
 //
 for (var i = 1; i <= boardNumber; i++)
 {
-    avaliableQueens.push(i)
+    availableQueens.push(i)
     rowAttempts.push([])
 }
 
@@ -64,10 +64,11 @@ function check(checkBoard)
 
 function queenPlacer()
 {
-    console.log("queenPlacer, availableQueens: ", avaliableQueens)
-    for (var i = 0; i < avaliableQueens.length; i++)
+    availableQueens.sort()
+    //console.log("queenPlacer, availableQueens: ", availableQueens)
+    for (var i = 0; i < availableQueens.length; i++)
     {
-        const queen = avaliableQueens[i]
+        const queen = availableQueens[i]
 
         if (rowAttempts[board.length].includes(queen)) {continue;}
 
@@ -80,7 +81,7 @@ function queenPlacer()
 
         if (valid)
         {
-            avaliableQueens.splice(i, 1)
+            availableQueens.splice(i, 1)
             console.log("queenPlacer, valid: ", board)
             return true;
         }
@@ -106,10 +107,10 @@ function backtrack()
             rowAttempts[board.length] = []
         }
 
-        avaliableQueens.push(board.pop())
+        availableQueens.push(board.pop())
         board_history.push([...board])
 
-        for (queen of avaliableQueens)
+        for (queen of availableQueens)
         {
             if (!(rowAttempts[board.length].includes(queen)))
             {
