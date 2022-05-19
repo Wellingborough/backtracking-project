@@ -142,7 +142,7 @@ function run()
         else if (hasPlaced && (board.length == boardNumber))
         {
             solutionCount++;
-            solutionNumbers.append(board_history.length)
+            solutionNumbers.push(board_history.length)
             // console.log(board)
             running = backtrack()
         }
