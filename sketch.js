@@ -214,7 +214,7 @@ function calculateMoves()
     
     moves.push({index: 0, dx: 0, dy: 0, active: true})
 
-    var boardIndex = 0
+    var boardIndex = 1
     
     for (tmpBoard of boardHistory)
     {
