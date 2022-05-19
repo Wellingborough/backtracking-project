@@ -194,8 +194,6 @@ var virtualPositions = [{x: 0, y: 0}, {x: 0, y: 1}, {x: 0, y: 2}, {x: 0, y: 3}, 
 
 function createMove(index, x, state)
 {
-    console.log("createMove: virtualPositions ", virtualPositions)
-    console.log("createMove: index, x, state ", index, x, state)
     var dx = x - virtualPositions[index].x
     virtualPositions[index].x += dx
 
