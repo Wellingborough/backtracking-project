@@ -160,6 +160,13 @@ function movePiece()
     if (moves.length > 0)
     {
         var move = moves[0]
+        
+        if (move.index == -99) {
+            moves.shift()
+            console.log("Pausing")
+            clearInterval(movePieceInterval)    
+            return
+        }
 
         queens[move.index].active = move.active        
 
@@ -191,8 +198,7 @@ function createMove(index, x, state)
     // Dummy move indicating we should pause on a solution
     //
     if ( (index == -99) && (x == -99) ){
-        console.log("Pausing")
-        clearInterval(movePieceInterval)
+        moves.push({index: index, dx: x, dy: x, active: state})
         return
     }
 
