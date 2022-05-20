@@ -52,6 +52,7 @@ var queens;
 var previousTime;
 var dt;
 var movePieceInterval;
+var resumeInterval;
 
 var moves = []
 
@@ -97,6 +98,13 @@ function setup()
     textSize(24)
 
     calculateMoves()
+}
+
+function resumeOperations()
+{
+    clearInterval(resumeInterval)
+    loop()
+    movePieceInterval = setInterval(movePiece, myInterval)
 }
 
 function playLoop()
@@ -178,7 +186,9 @@ function movePiece()
             moves.shift()
             console.log("Pausing")
             solutionNumber += 1
-            clearInterval(movePieceInterval)    
+            clearInterval(movePieceInterval)
+            resumeInterval = setInterval(resumeOperations, myInterval * 50)
+            noLoop()
             return
         }
 
