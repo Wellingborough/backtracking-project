@@ -61,7 +61,7 @@ var canvas;
 var play;
 var pause;
 
-const myInterval = 100
+const myInterval = 10
 
 function setup()
 {
