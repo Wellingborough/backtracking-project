@@ -189,6 +189,9 @@ function movePiece()
             clearInterval(movePieceInterval)
             resumeInterval = setInterval(resumeOperations, myInterval * 50)
             noLoop()
+            if (solutionNumber == 5){
+                console.log("HERE")
+            }
             return
         }
 
