@@ -271,6 +271,10 @@ function calculateMoves()
         {   
             const item = tmpBoard[i]
 
+            if ( (i == 7) && (item == 1)) {
+                console.log("calculateMoves: ", boardIndex, tmpBoard)
+            }
+            
             if (item == -1)
             {
                 createMove(i, 0, false)
