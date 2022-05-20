@@ -192,7 +192,11 @@ function movePiece()
             return
         }
 
-        queens[move.index].active = move.active        
+        queens[move.index].active = move.active      
+        
+        if ((queens[move.index].x == 0) && (queens[move.index].y == 7)) {
+            console.log("movePiece", move);
+        }
 
         if (move.dx != 0)
         {
