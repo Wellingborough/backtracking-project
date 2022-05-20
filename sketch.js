@@ -250,6 +250,7 @@ function calculateMoves()
     var boardHistory = package[0]
     var solutionNumbers = package[1]
     console.log(boardHistory)
+    console.log(solutionNumbers)
 
     for (tmpBoard of boardHistory)
     {
