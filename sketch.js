@@ -244,6 +244,9 @@ function createMove(index, x, state)
         if ( state ) {
             moves.push({index: index, dx: 0, dy: 0, active: state})
         }
+        else {
+            moves.push({index: index, dx: -1, dy: 0, active: state})
+        }
     }
 }
 
