@@ -63,7 +63,10 @@ var pause
 
 // 1/4 second between moves
 // reduced to 10ms for testing.
-const myInterval = 10
+const moveDelay = 10
+
+// 4 seconds pause when a solution is found
+const pauseDelay = 4000
 
 function setup()
 {
@@ -84,7 +87,7 @@ function setup()
     pause.position(pause.position().x + 50, pause.position().y, "fixed")
     pause.addClass("button")
 
-    movePieceInterval = setInterval(movePiece, myInterval)
+    movePieceInterval = setInterval(movePiece, moveDelay)
 
     queens = [
         {index: 0, black: loadImage("./resources/black_queen.png"), white: loadImage("./resources/white_queen.png"), x: 0, y: 0, active: false},
@@ -106,13 +109,13 @@ function resumeOperations()
 {
     clearInterval(resumeInterval)
     loop()
-    movePieceInterval = setInterval(movePiece, myInterval)
+    movePieceInterval = setInterval(movePiece, moveDelay)
 }
 
 function playLoop()
 {
     loop()
-    movePieceInterval = setInterval(movePiece, myInterval)
+    movePieceInterval = setInterval(movePiece, moveDelay)
 }
 
 //
@@ -198,7 +201,7 @@ function movePiece()
             moves.shift()
             solutionNumber += 1
             clearInterval(movePieceInterval)
-            resumeInterval = setInterval(resumeOperations, myInterval * 8)
+            resumeInterval = setInterval(resumeOperations, pauseDelay)
             noLoop()
             return
         }
