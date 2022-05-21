@@ -63,10 +63,29 @@ var pause
 
 // 1/4 second between moves
 // reduced to 10ms for testing.
-const moveDelay = 10
+const maxDelay=100 // max delay posible 
+let moveDelay =0 //start delay at 0 then change with slider
 
 // 4 seconds pause when a solution is found
-const pauseDelay = 4000
+let pauseDelay = 4000
+
+
+//speed control variables
+const speedSlide= document.querySelector('#speed')
+speedSlide.addEventListener('change',updateSpeed)
+
+//speed control function
+function updateSpeed(event){
+    //get value from slider
+    const num = event.target.value;
+    
+    moveDelay= maxDelay * (num/100);
+    console.log(`move Delay is now ${moveDelay}`)
+    pauseLoop()
+    playLoop()
+
+
+}
 
 function setup()
 {
