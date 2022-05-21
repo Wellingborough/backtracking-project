@@ -62,7 +62,8 @@ var play
 var pause
 
 // 1/4 second between moves
-const myInterval = 250
+// reduced to 10ms for testing.
+const myInterval = 10
 
 function setup()
 {
