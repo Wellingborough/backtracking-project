@@ -37,52 +37,53 @@ function drawBoard()
         {
             if (offset == 1)
             {
-                offset = 0;
+                offset = 0
             }
             else if (offset == 0)
             {
-                offset = 1;
+                offset = 1
             }
         }
     }
 }
 
-var queens;
+var queens
 
-var previousTime;
-var dt;
-var movePieceInterval;
-var resumeInterval;
+var previousTime
+var dt
+var movePieceInterval = 0
+var resumeInterval = 0
 
 var moves = []
 
 
-var canvas;
-var play;
-var pause;
+var canvas
+var play
+var pause
 
-const myInterval = 10
+// 1/4 second between moves
+const myInterval = 250
 
 function setup()
 {
-    canvas = createCanvas(SCREEN_WIDTH, SCREEN_HEIGHT);
-    canvas.center();
+    canvas = createCanvas(SCREEN_WIDTH, SCREEN_HEIGHT)
+    canvas.center()
     const canvasPosition = canvas.position()
     canvas.position(canvasPosition.x, canvasPosition.y - 250, "fixed")
 
-    play = createButton("Play");
-    play.mousePressed(playLoop);
-    play.center("horizontal");
-    play.position(play.position().x - 50, play.position().y, "fixed");
-    play.addClass("button");
+    play = createButton("Play")
+    play.mousePressed(playLoop)
+    play.center("horizontal")
+    play.position(play.position().x - 50, play.position().y, "fixed")
+    play.addClass("button")
 
-    pause = createButton("Pause");
-    pause.mousePressed(pauseLoop);
-    pause.center("horizontal");
-    pause.position(pause.position().x + 50, pause.position().y, "fixed");
-    pause.addClass("button");
+    pause = createButton("Pause")
+    pause.mousePressed(pauseLoop)
+    pause.center("horizontal")
+    pause.position(pause.position().x + 50, pause.position().y, "fixed")
+    pause.addClass("button")
 
-    movePieceInterval = setInterval(movePiece, myInterval);
+    movePieceInterval = setInterval(movePiece, myInterval)
 
     queens = [
         {index: 0, black: loadImage("./resources/black_queen.png"), white: loadImage("./resources/white_queen.png"), x: 0, y: 0, active: false},
@@ -113,10 +114,20 @@ function playLoop()
     movePieceInterval = setInterval(movePiece, myInterval)
 }
 
+//
+// If the user requests a pause, clear the move interval, but also
+// check for a resume interval and clear that too if present
+// (The resume interval is for the 'pause on a solution, but then
+// automatically resume' featurette
+//
 function pauseLoop()
 {
     noLoop()
     clearInterval(movePieceInterval)
+    if (resumeInterval){
+        clearInterval(resumeInterval)
+        resumeInterval = 0
+    }
 }
 
 function draw()
@@ -133,7 +144,7 @@ function draw()
     }
     
     drawBoard()
-    var number = 0;
+    var number = 0
     for (queen of queens)
     {
         number++;
@@ -145,18 +156,18 @@ function draw()
             {
                 if (queen.x % 2 == 1)
                 {
-                    queen_image = queen.black;
+                    queen_image = queen.black
                 }
                 else
                 {
-                    queen_image = queen.white;
+                    queen_image = queen.white
                 }
             }
             else if (queen.y % 2 == 0)
             {
                 if (queen.x % 2 == 1)
                 {
-                    queen_image = queen.white;
+                    queen_image = queen.white
                 }
                 else
                 {
@@ -167,11 +178,11 @@ function draw()
             {
                 console.log("something has gone terribly wrong")
             }
-            image(queen_image, queen.x * squareWidth, queen.y * squareHeight, squareWidth, squareHeight);
+            image(queen_image, queen.x * squareWidth, queen.y * squareHeight, squareWidth, squareHeight)
         }
         else
         {
-            image(queen.black, ((n - queen.index) * squareWidth - squareWidth), squareHeight * 9, squareWidth, squareHeight);
+            image(queen.black, ((n - queen.index) * squareWidth - squareWidth), squareHeight * 9, squareWidth, squareHeight)
         } 
     }
 }
@@ -184,32 +195,24 @@ function movePiece()
         
         if (move.index == -99) {
             moves.shift()
-            console.log("Pausing")
             solutionNumber += 1
             clearInterval(movePieceInterval)
-            resumeInterval = setInterval(resumeOperations, myInterval * 50)
+            resumeInterval = setInterval(resumeOperations, myInterval * 8)
             noLoop()
-            if (solutionNumber == 5){
-                console.log("HERE")
-            }
             return
         }
 
         queens[move.index].active = move.active      
         
-        if ((queens[move.index].x == 0) && (queens[move.index].y == 7)) {
-            console.log("movePiece", move);
-        }
-
         if (move.dx != 0)
         {
-            const dx = move.dx;
+            const dx = move.dx
             queens[move.index].x += Math.round(dx / Math.abs(dx))
             move.dx -= Math.round(dx / Math.abs(dx))
         }
         else if (move.dy != 0)
         {
-            const dy = move.dy;
+            const dy = move.dy
             queens[move.index].y += Math.round(dy / Math.abs(dy))
             move.dy -= Math.round(dy / Math.abs(dy))
         }
@@ -276,10 +279,6 @@ function calculateMoves()
         for (var i = tmpBoard.length-1; i >= 0; i--)
         {   
             const item = tmpBoard[i]
-
-            if ( (i == 7) && (item == 1)) {
-                console.log("calculateMoves: ", boardIndex, tmpBoard)
-            }
             
             if (item == -1)
             {
